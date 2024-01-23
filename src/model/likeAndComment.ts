@@ -6,17 +6,18 @@ export default (sequelize: any) => {
     postId: { type: DataTypes.BIGINT },
     userId: { type: DataTypes.BIGINT },
     comment: {
-      type: DataTypes.STRING,
-      get() {
-        return JSON.parse(this.getDataValue('comment'));
-      },
-      set(value: any) {
-        return this.setDataValue('comment', JSON.stringify(value));
-      },
+      type: DataTypes.ARRAY(DataTypes.STRING),
     },
   });
   return likeAndComment;
 };
+
+// get() {
+//   return JSON.parse(this.getDataValue('comment'));
+// },
+// set(value: any) {
+//   return this.setDataValue('comment', JSON.stringify(value));
+// },
 
 // get: function() {
 //     return JSON.parse(this.getDataValue('myArrayField'));

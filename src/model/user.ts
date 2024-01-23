@@ -51,7 +51,7 @@ export default async (sequelize: any) => {
           },
         },
       },
-      totalPost: DataTypes.STRING,
+      totalPost: DataTypes.ARRAY(DataTypes.STRING),
       bio: DataTypes.STRING(500),
     },
     {
