@@ -31,11 +31,10 @@ export default async (sequelize: any) => {
               !/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/.test(
                 value
               )
-            ) {
+            )
               throw new Error(
                 'Password must be strong with at least one lowercase letter, one uppercase letter, one digit, and one special character.'
               );
-            }
           },
         },
         allowNull: false,
@@ -45,9 +44,7 @@ export default async (sequelize: any) => {
         allowNull: false,
         validate: {
           is18(value: number) {
-            if (value < 18) {
-              throw new Error('Minimum age is required 18');
-            }
+            if (value < 18) throw new Error('Minimum age is required 18');
           },
         },
       },
