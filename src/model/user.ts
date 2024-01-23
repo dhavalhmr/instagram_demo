@@ -1,8 +1,8 @@
-import { DataTypes } from "sequelize";
+import { DataTypes } from 'sequelize';
 
 export default async (sequelize: any) => {
   const User = sequelize.define(
-    "User",
+    'User',
     {
       id: { type: DataTypes.BIGINT, primaryKey: true, autoIncrement: true },
       username: {
@@ -10,7 +10,7 @@ export default async (sequelize: any) => {
         allowNull: false,
         unique: true,
         set(value: string) {
-          this.setDataValue("username", value?.trim());
+          this.setDataValue('username', value?.trim());
         },
       },
       email: {
@@ -19,7 +19,7 @@ export default async (sequelize: any) => {
         unique: true,
         validate: { isEmail: true },
         set(value: string) {
-          this.setDataValue("email", value?.trim());
+          this.setDataValue('email', value?.trim());
         },
       },
       password: {
@@ -33,13 +33,26 @@ export default async (sequelize: any) => {
               )
             ) {
               throw new Error(
-                "Password must be strong with at least one lowercase letter, one uppercase letter, one digit, and one special character."
+                'Password must be strong with at least one lowercase letter, one uppercase letter, one digit, and one special character.'
               );
             }
           },
         },
         allowNull: false,
       },
+      dob: {
+        type: DataTypes.DATEONLY,
+        allowNull: false,
+        validate: {
+          is18(value: number) {
+            if (value < 18) {
+              throw new Error('Minimum age is required 18');
+            }
+          },
+        },
+      },
+      totalPost: DataTypes.STRING,
+      bio: DataTypes.STRING(500),
     },
     {
       timestamp: true,

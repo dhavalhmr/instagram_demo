@@ -1,10 +1,10 @@
-import express from "express";
-import compression from "compression";
-import cookieParser from "cookie-parser";
-import cors from "cors";
-import { initializedDatabase } from "./database/index";
-import "dotenv/config";
-import { config } from "./config";
+import express from 'express';
+import compression from 'compression';
+import cookieParser from 'cookie-parser';
+import cors from 'cors';
+import { initializedDatabase } from './database/index';
+import 'dotenv/config';
+import { config } from './config';
 
 const app = express();
 const port: number = 2000;
@@ -13,7 +13,7 @@ const CorsOptions: {
   origin: string;
   credential: boolean;
 } = {
-  origin: "*",
+  origin: '*',
   credential: true,
 };
 app.use(cors(CorsOptions));
